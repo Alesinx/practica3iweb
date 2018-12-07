@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.SessionScoped;
@@ -42,8 +43,9 @@ public class ModulosBean implements Serializable{
 //    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/iWebServer/crudModulo.wsdl")
 //    private CrudModulo_Service service;
 //    // ------------------------------------------------------------------------------------
-    
+    @EJB
     protected CampanyaWSClient campanyaService;
+    @EJB
     protected ModuloWSClient moduloService;
     
     
@@ -55,6 +57,8 @@ public class ModulosBean implements Serializable{
 
     @PostConstruct
     public void init() {
+        campanyaService = new CampanyaWSClient();
+        moduloService = new ModuloWSClient();
         if( listaModulo == null){
             listaModulo = moduloService.findAll();
         }
@@ -88,11 +92,11 @@ public class ModulosBean implements Serializable{
         return "listaModulos";
     }
     
-    public String listaModulos() {
+    public String listaModulosPage() {
         return "listaModulos";
     }
     
-    public String listaCampanyas() {
+    public String listaCampanyasPage() {
         return "listaCampanyas";
     }
     

@@ -20,7 +20,7 @@ import javax.persistence.Query;
 @Stateless
 public class CampanyaFacade extends AbstractFacade<Campanya> {
 
-    @PersistenceContext(unitName = "iwRESTsvPU")
+    @PersistenceContext(unitName = "iweb")
     private EntityManager em;
 
     @Override

@@ -30,7 +30,7 @@ public class ModuloWSClient {
 
     private WebTarget webTarget;
     private Client client;
-    private static final String BASE_URI = "http://localhost:8080/iwRESTsv/webresources";
+    private static final String BASE_URI = "http://localhost:8080/A7servidorREST/webresources";
 
     public ModuloWSClient() {
         client = javax.ws.rs.client.ClientBuilder.newClient();

@@ -23,7 +23,7 @@ import javax.persistence.criteria.Root;
 @Stateless
 public class ModuloFacade extends AbstractFacade<Modulo> {
 
-    @PersistenceContext(unitName = "iwRESTsvPU")
+    @PersistenceContext(unitName = "iweb")
     private EntityManager em;
 
     @Override

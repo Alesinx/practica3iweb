@@ -13,11 +13,11 @@
                         <b:panel title="Tabla" collapsible="false">
                             <h:form style="padding-left: 10px; padding-right: 10px">
                                 
-                                <b:dataTable value = "#{modulosBean.listaCampanyas}" var = "campanya" >
+                                <b:dataTable value = "#{modulosBean.listaCampanyas}" var = "camp" >
 
-                                    <b:dataTableColumn value="#{campanya.campanyaPK.moduloIdmodulo}" label="id" style="width: 10%"/>
-                                    <b:dataTableColumn value="#{campanya.nombrecampanya}" label="Nombre"/>
-                                    <b:dataTableColumn value="#{campanya.fecha}"/>
+                                    <b:dataTableColumn value="#{camp.idcampanya}" label="id" style="width: 10%"/>
+                                    <b:dataTableColumn value="#{camp.nombrecampanya}" label="Nombre"/>
+                                    <b:dataTableColumn value="#{camp.fecha}"/>
 
                                 </b:dataTable>
                                 
