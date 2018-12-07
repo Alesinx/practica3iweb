@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <b:container style="padding-left: 5% ; padding-right: 2%">
+            <b:jumbotron style="padding-left: 5% ; padding-right: 2%">
+                
+                <h:form>
+                    <b:dataTable value = "#{modulosBean.listaModulo}" var = "modulo" style="padding-left: 5% ; padding-right: 2%">
+                        
+                        <b:dataTableColumn value="#{modulo.idmodulo}" label="ID"/>
+
+                        <b:dataTableColumn value="#{modulo.nombremodulo}" label="Nombre"/>
+
+                        <b:dataTableColumn value="#{modulo.valoralpha}" label="Alpha"/>
+
+                        <b:dataTableColumn value="#{modulo.valorbeta}" label="Beta"/> 
+
+                        <b:dataTableColumn value="#{modulo.valorgamma}" label="Gamma"/> 
+
+                        <b:dataTableColumn value="#{modulo.valorkappa}" label="Kappa"/> 
+
+                        <b:dataTableColumn value="#{modulo.idealidad}" label="Idealidad"/> 
+
+                        <b:dataTableColumn value="#{modulo.resistencia}" label="Resistencia"/>
+
+                        <b:dataTableColumn value="#{modulo.rendimiento}" label="Rendimiento"/>
+
+                        <b:dataTableColumn>
+                            <b:commandButton value="Campañas" action="#{modulosBean.CampanyasByModulo(modulo.idmodulo)}" look="info"/>
+                        </b:dataTableColumn> 
+
+                        <b:dataTableColumn>
+                            <b:commandButton value="BORRAR" action="#{modulosBean.delete(modulo.idmodulo)}" look="danger"/>
+                        </b:dataTableColumn> 
+                        
+                    </b:dataTable>
+                </h:form> 
+                
+            </b:jumbotron>
+        </b:container>
+        
+        
+        
+        <h:form>
+            <h:commandButton action="#{modulosBean.orderByNombre()}" value="Ordenar por nombre" />
+        </h:form>
+        
+        <h:form>
+            <h:commandButton action="#{modulosBean.orderByRendimiento()}" value="Ordenar por rendimiento" />
+        </h:form>
+        
+        
+        <h:form>
+            <h:inputText value="#{modulosBean.filtro}">
+            </h:inputText>
+            
+            <h:commandButton action="#{modulosBean.FilterByNombre()}" value="Filtrar por nombre" />
+            <h:commandButton action="#{modulosBean.FilterByIdealidad()}" value="Filtrar por idealidad" />
+        </h:form>
+        
+        <br/>
+        <br/>
+        <br/>
+        
+        <h:form>
+            <h:commandButton action="#{modulosBean.VolverIndex()}" value="Volver al menu principal" />
+        </h:form>
+
+    </h:body>
+    
+</html>
+
