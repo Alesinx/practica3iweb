@@ -86,6 +86,13 @@ public class ModuloFacadeREST {
     }
     
     @GET
+    @Path("orderBy/rendimiento")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Modulo> orderByRendimiento() {
+        return moduloFacade.orderByRendimiento();
+    }
+    
+    @GET
     @Path("filter/nombre/{nombre}")
     @Produces({MediaType.APPLICATION_JSON})
     public List<Modulo> filterByNombre(@PathParam("nombre") String nombre) {

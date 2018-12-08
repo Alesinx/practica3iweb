@@ -69,6 +69,12 @@ public class ModuloWSClient {
                 get(new GenericType<List<Modulo>>(){});
     }
     
+    public List<Modulo> orderByRendimiento() throws ClientErrorException {
+        return webTarget.path("orderBy/rendimiento").
+                request(javax.ws.rs.core.MediaType.APPLICATION_JSON).
+                get(new GenericType<List<Modulo>>(){});
+    }
+    
     public List<Modulo> filterByNombre(String nombre) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("filter/nombre/{0}", new Object[]{nombre}));

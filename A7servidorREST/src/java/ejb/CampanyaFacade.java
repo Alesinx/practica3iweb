@@ -34,7 +34,7 @@ public class CampanyaFacade extends AbstractFacade<Campanya> {
     
     public List<Campanya> filterByNombre(String nombre) {
         Query q;
-        q = em.createQuery("SELECT c FROM Campanya c WHERE c.nombrecampanya <= :nombre");
+        q = em.createQuery("SELECT c FROM Campanya c WHERE c.nombrecampanya = :nombre");
         q.setParameter("nombre", nombre);
         return q.getResultList();
     }

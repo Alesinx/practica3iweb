@@ -92,7 +92,7 @@ public class CampanyaFacadeREST {
     @Path("filter/fecha/{date}")
     @Produces({MediaType.APPLICATION_JSON})
     public List<Campanya> filterByFecha(@PathParam("date") String date)throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("mm-dd-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
         return campanyaFacade.filterByFecha(sdf.parse(date));
     }
     

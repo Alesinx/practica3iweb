@@ -41,6 +41,12 @@ public class ModuloFacade extends AbstractFacade<Modulo> {
         return q.getResultList();
     }
     
+    public List<Modulo> orderByRendimiento() {
+        Query q;
+        q = em.createQuery("SELECT m FROM Modulo m ORDER BY m.rendimiento");
+        return q.getResultList();
+    }
+    
     public List<Modulo> filterByNombre(String nombre) {
         Query q;
         q = em.createQuery("SELECT m FROM Modulo m WHERE m.nombremodulo  = :nombre");
