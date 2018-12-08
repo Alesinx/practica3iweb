@@ -20,6 +20,8 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.SessionScoped;
+import javax.json.Json;
+import javax.json.JsonArray;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -53,6 +55,8 @@ public class ModulosBean implements Serializable{
     protected List<pojo.Campanya> listaCampanyas;
     protected String filtro;
     protected String campanyaFiltro;
+    
+    protected String moduloJson;
 
 
     @PostConstruct
@@ -66,6 +70,9 @@ public class ModulosBean implements Serializable{
         if( listaCampanyas == null) {
             listaCampanyas = campanyaService.findAll();
         }
+        moduloJson = getUbications();
+        
+        
     }
     
     public String orderByNombre() {
@@ -142,6 +149,7 @@ public class ModulosBean implements Serializable{
     public String VolverIndex(){
         return "index";
     }
+    
 
     public ModulosBean() {
     }
@@ -180,8 +188,32 @@ public class ModulosBean implements Serializable{
     public void setCampanyaFiltro(String CampanyaFiltro) {
         this.campanyaFiltro = CampanyaFiltro;
     }
+    public String getModuloJson() {
+        return moduloJson;
+    }
+
+    public void setModuloJson(String ModuloJson) {
+        this.moduloJson = ModuloJson;
+    }
     
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    private String getUbications() {
+        String s="[ ";
+        int indx = 0; 
+        for(Modulo m : listaModulo){
+            indx++;
+            s+="{lat: parseFloat("+m.getLatitud()+"), lng: parseFloat("+m.getLongitud()+")}"; 
+            if(indx<listaModulo.size()){
+                s+=",";
+            }
+        }
+        s+="]";
+        
+        return s;
+    }
+
+    
     
     
 }
