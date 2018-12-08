@@ -40,17 +40,19 @@
                         </b:panel>
                         
                         <b:panel title="filtrar" collapsible="false">
+                            
                             <h:form>
-                                
                                 <b:inputText value="#{modulosBean.campanyaFiltro}"/>
-                                
-                                <b:buttonGroup orientation="vertical">
-                                    <b:commandButton action="#{modulosBean.CampanyaFilterByNombre()}" value="Filtrar por nombre" look="info"/>
-                                    <br/>
-                                    <b:commandButton action="#{modulosBean.CampanyaFilterByFecha()}" value="Filtrar por fecha" look="info"/>
-                                </b:buttonGroup>
-                                
+                                <b:commandButton action="#{modulosBean.CampanyaFilterByNombre()}" value="Filtrar por nombre" look="info"/>
                             </h:form>
+                            
+                            <br/><br/>
+                            
+                            <b:form>
+                                formato: mm-dd-yyyy
+                                <b:inputText value="#{modulosBean.dateString}"/>
+                                <b:commandButton action="#{modulosBean.CampanyaFilterByFecha()}" value="Filtrar por fecha" look="info"/>
+                            </b:form>
                         </b:panel>
 
                         <br/>

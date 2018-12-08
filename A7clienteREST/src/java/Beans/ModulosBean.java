@@ -58,6 +58,7 @@ public class ModulosBean implements Serializable{
     
     protected String moduloJson;
 
+    protected String dateString;
 
     @PostConstruct
     public void init() {
@@ -71,30 +72,39 @@ public class ModulosBean implements Serializable{
             listaCampanyas = campanyaService.findAll();
         }
         moduloJson = getUbications();
-        
-        
     }
     
     public String orderByNombre() {
-//      listaModulo = moduloService.;
+      listaModulo = moduloService.orderByNombre();
         return "listaModulos";
     }
     
     public String orderByRendimiento() {
-//      listaModulo = moduloAllByRendimiento();
+//      listaModulo =moduloService.ord;
         return "listaModulos";
     }
     
     public String FilterByNombre() {
-//      listaModulo = moduloService.;
+        listaModulo = moduloService.filterByNombre(filtro);
         return "listaModulos";
     }
     
-    public String FilterByIdealidad() {
-//        Double num = Double.parseDouble(filtro);
-//        if(num != null){
-//            listaModulo = moduloFilterByIdealidad(num);
-//        }
+    public String FilterByIdealidadLower() {
+        
+        Double num = Double.parseDouble(filtro);
+        if(num != null){
+            listaModulo = moduloService.filterByIdealidadLower(num);
+        }
+            
+        return "listaModulos";
+    }
+    
+    public String FilterByIdealidadGreater() {
+        
+        Double num = Double.parseDouble(filtro);
+        if(num != null){
+            listaModulo = moduloService.filterByIdealidadLower(num);
+        }
             
         return "listaModulos";
     }
@@ -120,41 +130,60 @@ public class ModulosBean implements Serializable{
     }
     
     public String CampanyaOrderByNombre() {
-//        listaCampanyas = campanyaService.
+        listaCampanyas = campanyaService.orderByNombre();
         return "listaCampanyas";
     }
     
     public String CampanyaOrderByFecha() {
-//        listaCampanyas = campanyaallByFecha();
+        listaCampanyas = campanyaService.orderByFecha();
         return "listaCampanyas";
     }
     
     public String CampanyaFilterByNombre() {
-//        listaCampanyas = campanyaService.
+        listaCampanyas = campanyaService.filterByNombre(filtro);
         return "listaCampanyas";
     }
     
-    public String CampanyaFilterByFecha() throws ParseException, DatatypeConfigurationException {
-//        DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS z");
-//        Date date = format.parse(campanyaFiltro);
-//        GregorianCalendar cal = new GregorianCalendar();
-//        cal.setTime(date);
-//        XMLGregorianCalendar xmlGregCal =  DatatypeFactory.newInstance().newXMLGregorianCalendar(cal);
-//        
-//        listaCampanyas = campanyaFilterByFecha(xmlGregCal);
-//        
+    public String CampanyaFilterByFecha() {
+        listaCampanyas = campanyaService.filterByFecha(dateString);
         return "listaCampanyas";
+    }
+    
+    public String deleteModulo(int id) {
+        moduloService.remove(id);
+        return "index";
     }
     
     public String VolverIndex(){
         return "index";
     }
     
+    public String seeMap() {
+        return "Map";
+    }
+    
 
     public ModulosBean() {
     }
     
-    // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+     // -------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+    private String getUbications() {
+        String s="[ ";
+        int indx = 0; 
+        for(Modulo m : listaModulo){
+            indx++;
+            s+="{lat: parseFloat("+m.getLatitud()+"), lng: parseFloat("+m.getLongitud()+")}"; 
+            if(indx<listaModulo.size()){
+                s+=",";
+            }
+        }
+        s+="]";
+        
+        return s;
+    }
+    
+    // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
     // GETTERS AND SETTERS
     
     public List<Modulo> getListaModulo() {
@@ -196,24 +225,16 @@ public class ModulosBean implements Serializable{
         this.moduloJson = ModuloJson;
     }
     
-    // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    private String getUbications() {
-        String s="[ ";
-        int indx = 0; 
-        for(Modulo m : listaModulo){
-            indx++;
-            s+="{lat: parseFloat("+m.getLatitud()+"), lng: parseFloat("+m.getLongitud()+")}"; 
-            if(indx<listaModulo.size()){
-                s+=",";
-            }
-        }
-        s+="]";
-        
-        return s;
+    public String getDateString() {
+        return dateString;
     }
 
+    public void setDateString(String dateString) {
+        this.dateString = dateString;
+    }
     
+    // -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
     
     
 }

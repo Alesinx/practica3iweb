@@ -62,6 +62,18 @@ public class ModuloWSClient {
     public void create(Modulo requestEntity) throws ClientErrorException {
         webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
+    
+    public List<Modulo> orderByNombre() throws ClientErrorException {
+        return webTarget.path("orderBy/nombre").
+                request(javax.ws.rs.core.MediaType.APPLICATION_JSON).
+                get(new GenericType<List<Modulo>>(){});
+    }
+    
+    public List<Modulo> filterByNombre(String nombre) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("filter/nombre/{0}", new Object[]{nombre}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<Modulo>>(){});
+    }
 
     public List<Modulo> findByValues(Double alpha, Double beta, Double gamma, Double kappa) throws ClientErrorException {
         WebTarget resource = webTarget;
@@ -69,25 +81,37 @@ public class ModuloWSClient {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<Modulo>>(){});
     }
     
-    public List<Modulo> findByRendimientoGreater(Double rendimiento) throws ClientErrorException {
+    public List<Modulo> filterByIdealidadGreater(Double idealidad) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("filter/idealidad/greater/{0}", new Object[]{idealidad.toString()}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<Modulo>>(){});
+    }
+    
+    public List<Modulo> filterByIdealidadLower(Double idealidad) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("filter/rendimiento/lower/{0}", new Object[]{idealidad.toString()}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<Modulo>>(){});
+    }
+    
+    public List<Modulo> filterByRendimientoGreater(Double rendimiento) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("filter/rendimiento/greater/{0}", new Object[]{rendimiento.toString()}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<Modulo>>(){});
     }
     
-    public List<Modulo> findByRendimientoLower(Double rendimiento) throws ClientErrorException {
+    public List<Modulo> filterByRendimientoLower(Double rendimiento) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("filter/rendimiento/lower/{0}", new Object[]{rendimiento.toString()}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<Modulo>>(){});
     }
     
-    public List<Modulo> findByResistenciaGreater(Double resistencia) throws ClientErrorException {
+    public List<Modulo> filterByResistenciaGreater(Double resistencia) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("filter/resistencia/greater/{0}", new Object[]{resistencia.toString()}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<Modulo>>(){}); 
     }
     
-    public List<Modulo> findByResistenciaLower(Double resistencia) throws ClientErrorException {
+    public List<Modulo> filterByResistenciaLower(Double resistencia) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("filter/resistencia/lower/{0}", new Object[]{resistencia.toString()}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<Modulo>>(){});

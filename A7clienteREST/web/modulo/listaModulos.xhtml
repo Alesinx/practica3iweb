@@ -7,46 +7,9 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
+    
     <h:body>
-        
         <b:container style="padding-top: 5%">
-            <b:row>
-                <b:panel title="Modulos" collapsible="false">
-                
-                <h:form>
-                    <b:dataTable value = "#{modulosBean.listaModulo}" var = "modulo" custom-options="false">
-                        
-                        <b:dataTableColumn value="#{modulo.idmodulo}" label="ID"/>
-
-                        <b:dataTableColumn value="#{modulo.nombremodulo}" label="Nombre"/>
-
-                        <b:dataTableColumn value="#{modulo.valoralpha}" label="Alpha"/>
-
-                        <b:dataTableColumn value="#{modulo.valorbeta}" label="Beta"/> 
-
-                        <b:dataTableColumn value="#{modulo.valorgamma}" label="Gamma"/> 
-
-                        <b:dataTableColumn value="#{modulo.valorkappa}" label="Kappa"/> 
-
-                        <b:dataTableColumn value="#{modulo.idealidad}" label="Idealidad"/> 
-
-                        <b:dataTableColumn value="#{modulo.resistencia}" label="Resistencia"/>
-
-                        <b:dataTableColumn value="#{modulo.rendimiento}" label="Rendimiento"/>
-
-                        <b:dataTableColumn label="">
-                            <b:commandButton value="Campañas" action="#{modulosBean.CampanyasByModulo(modulo.idmodulo)}" look="info"/>
-                        </b:dataTableColumn> 
-
-                        <b:dataTableColumn label="">
-                            <b:commandButton value="BORRAR" action="#{modulosBean.delete(modulo.idmodulo)}" look="danger"/>
-                        </b:dataTableColumn> 
-                        
-                    </b:dataTable>
-                </h:form> 
-                
-                </b:panel>
-            </b:row>
             <b:row>
                 <b:column small-screen="one-third">
                     <b:panel title="order" collapsible="false">
@@ -66,7 +29,8 @@
                         </b:inputText>
 
                         <b:commandButton action="#{modulosBean.FilterByNombre()}" value="Filtrar por nombre" look="info"/>
-                        <b:commandButton action="#{modulosBean.FilterByIdealidad()}" value="Filtrar por idealidad" look="info"/>
+                        <b:commandButton action="#{modulosBean.filterByIdealidadGreater}" value="Filtrar por idealidad (valores mayores)" look="info"/>
+                        <b:commandButton action="#{modulosBean.filterByIdealidadLower}" value="Filtrar por idealidad (valores menores)" look="info"/>
                     </h:form>
                     </b:panel>
                 </b:column>
@@ -75,9 +39,54 @@
                         <b:commandButton action="#{modulosBean.VolverIndex()}" value="Volver al menu principal" look="success"/>
                     </h:form>
                 </b:column>
+                
+                <b:column>
+                    <h:form>
+                        <b:commandButton value="Ver mapa de modulos" action="#{modulosBean.seeMap}" look="danger"/>
+                    </h:form>
+                </b:column>
+                
             </b:row>
-        </b:container>
+            
+            <b:row>
+                <b:panel title="Modulos" collapsible="false">
+                
+                    <h:form>
+                        <b:dataTable value = "#{modulosBean.listaModulo}" var = "modulo" custom-options="false">
 
+                            <b:dataTableColumn value="#{modulo.idmodulo}" label="ID"/>
+
+                            <b:dataTableColumn value="#{modulo.nombremodulo}" label="Nombre"/>
+
+                            <b:dataTableColumn value="#{modulo.valoralpha}" label="Alpha"/>
+
+                            <b:dataTableColumn value="#{modulo.valorbeta}" label="Beta"/> 
+
+                            <b:dataTableColumn value="#{modulo.valorgamma}" label="Gamma"/> 
+
+                            <b:dataTableColumn value="#{modulo.valorkappa}" label="Kappa"/> 
+
+                            <b:dataTableColumn value="#{modulo.idealidad}" label="Idealidad"/> 
+
+                            <b:dataTableColumn value="#{modulo.resistencia}" label="Resistencia"/>
+
+                            <b:dataTableColumn value="#{modulo.rendimiento}" label="Rendimiento"/>
+
+                            <b:dataTableColumn label="" style="max-width: 2%">
+                                <b:commandButton value="Campañas" action="#{modulosBean.CampanyasByModulo(modulo.idmodulo)}" look="info"/>
+                            </b:dataTableColumn> 
+ 
+                            <b:dataTableColumn label="">
+                                <b:commandButton value="BORRAR" action="#{modulosBean.deleteModulo(modulo.idmodulo)}" look="danger"/>
+                            </b:dataTableColumn>
+                            
+                        </b:dataTable>
+                    </h:form> 
+
+                </b:panel>
+            </b:row>
+            
+        </b:container>
     </h:body>
     
 </html>

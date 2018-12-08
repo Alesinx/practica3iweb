@@ -68,10 +68,20 @@ public class CampanyaWSClient {
         WebTarget resource = webTarget;
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<Campanya>>(){});
     }
+
+    public void remove(Integer id) throws ClientErrorException {
+        webTarget.path(java.text.MessageFormat.format("{0}", new Object[]{id.toString()})).request().delete();
+    }
     
-    public List<Campanya> findByDate(String date) throws ClientErrorException {
+    public List<Campanya> filterByFecha(String fecha) throws ClientErrorException {
         WebTarget resource = webTarget;
-        resource = resource.path(java.text.MessageFormat.format("filter/date/{0}", new Object[]{date}));
+        resource = resource.path(java.text.MessageFormat.format("filter/fecha/{0}", new Object[]{fecha}));
+        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<Campanya>>(){});
+    }
+    
+    public List<Campanya> filterByNombre(String nombre) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        resource = resource.path(java.text.MessageFormat.format("filter/nombre/{0}", new Object[]{nombre}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<Campanya>>(){});
     }
     
@@ -80,9 +90,17 @@ public class CampanyaWSClient {
         resource = resource.path(java.text.MessageFormat.format("find/byModuloId/{0}", new Object[]{id.toString()}));
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<Campanya>>(){});
     }
-
-    public void remove(Integer id) throws ClientErrorException {
-        webTarget.path(java.text.MessageFormat.format("{0}", new Object[]{id.toString()})).request().delete();
+    
+    public List<Campanya> orderByFecha() throws ClientErrorException {
+        return webTarget.path("orderBy/fecha").
+                request(javax.ws.rs.core.MediaType.APPLICATION_JSON).
+                get(new GenericType<List<Campanya>>(){});
+    }
+    
+    public List<Campanya> orderByNombre() throws ClientErrorException {
+        return webTarget.path("orderBy/nombre").
+                request(javax.ws.rs.core.MediaType.APPLICATION_JSON).
+                get(new GenericType<List<Campanya>>(){});
     }
 
     public void close() {

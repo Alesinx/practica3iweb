@@ -77,16 +77,23 @@ public class CampanyaFacadeREST {
     @GET
     @Path("count")
     @Produces(MediaType.TEXT_PLAIN)
-    public String countREST() {
+    public String count() {
         return String.valueOf(campanyaFacade.count());
     }
     
     @GET
-    @Path("filter/date/{date}")
+    @Path("filter/nombre/{nombre}")
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Campanya> filterByDate(@PathParam("date") String date)throws ParseException {
+    public List<Campanya> filterByNombre(@PathParam("nombre") String nombre) {
+        return campanyaFacade.filterByNombre(nombre);
+    }
+    
+    @GET
+    @Path("filter/fecha/{date}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Campanya> filterByFecha(@PathParam("date") String date)throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("mm-dd-yyyy");
-        return campanyaFacade.filterByDate(sdf.parse(date));
+        return campanyaFacade.filterByFecha(sdf.parse(date));
     }
     
     @GET
@@ -96,4 +103,17 @@ public class CampanyaFacadeREST {
         return campanyaFacade.findByModuloId(id);
     }
     
+    @GET
+    @Path("orderBy/fecha")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Campanya> orderByFecha() {
+        return campanyaFacade.orderByFecha();
+    }
+    
+    @GET
+    @Path("orderBy/nombre")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Campanya> orderByNombre() {
+        return campanyaFacade.orderByNombre();
+    }    
 }

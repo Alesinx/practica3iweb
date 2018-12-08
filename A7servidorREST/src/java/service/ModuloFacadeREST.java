@@ -79,6 +79,20 @@ public class ModuloFacadeREST {
     }
     
     @GET
+    @Path("orderBy/nombre")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Modulo> orberByNombre() {
+        return moduloFacade.orderByNombre();
+    }
+    
+    @GET
+    @Path("filter/nombre/{nombre}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Modulo> filterByNombre(@PathParam("nombre") String nombre) {
+        return moduloFacade.filterByNombre(nombre);
+    }
+    
+    @GET
     @Path("filter/rendimiento/greater/{rendimiento}")
     @Produces({MediaType.APPLICATION_JSON})
     public List<Modulo> filterByRendimientoGreater(@PathParam("rendimiento") double rendimiento) {
@@ -104,6 +118,20 @@ public class ModuloFacadeREST {
     @Produces({MediaType.APPLICATION_JSON})
     public List<Modulo> filterByResistenciaLower(@PathParam("resistencia") double resistencia) {
         return moduloFacade.filterByResistenciaLower(resistencia);
+    }
+    
+    @GET
+    @Path("filter/idealidad/greater/{idealidad}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Modulo> filterByIdealidadGreater(@PathParam("idealidad") double idealidad) {
+        return moduloFacade.filterByIdealidadGreater(idealidad);
+    }
+    
+    @GET
+    @Path("filter/idealidad/lower/{idealidad}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Modulo> filterByIdealidadLower(@PathParam("idealidad") double idealidad) {
+        return moduloFacade.filterByIdealidadLower(idealidad);
     }
     
     @GET

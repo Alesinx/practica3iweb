@@ -35,6 +35,19 @@ public class ModuloFacade extends AbstractFacade<Modulo> {
         super(Modulo.class);
     }
     
+    public List<Modulo> orderByNombre() {
+        Query q;
+        q = em.createQuery("SELECT m FROM Modulo m ORDER BY m.nombremodulo");
+        return q.getResultList();
+    }
+    
+    public List<Modulo> filterByNombre(String nombre) {
+        Query q;
+        q = em.createQuery("SELECT m FROM Modulo m WHERE m.nombremodulo  = :nombre");
+        q.setParameter("nombre", nombre);
+        return q.getResultList();
+    }
+    
     public List<Modulo> filterByRendimientoLower(double rendimiento) {
         Query q;
         q = em.createQuery("SELECT m FROM Modulo m WHERE m.rendimiento <= :rendimiento");
@@ -60,6 +73,20 @@ public class ModuloFacade extends AbstractFacade<Modulo> {
         Query q;
         q = em.createQuery("SELECT m FROM Modulo m WHERE m.resistencia >= :resistencia");
         q.setParameter("resistencia", resistencia);
+        return q.getResultList();
+    }
+    
+    public List<Modulo> filterByIdealidadLower(double idealidad) {
+        Query q;
+        q = em.createQuery("SELECT m FROM Modulo m WHERE m.idealidad <= :idealidad");
+        q.setParameter("idealidad", idealidad);
+        return q.getResultList();
+    }
+    
+    public List<Modulo> filterByIdealidadGreater(double idealidad) {
+        Query q;
+        q = em.createQuery("SELECT m FROM Modulo m WHERE m.idealidad >= :idealidad");
+        q.setParameter("idealidad", idealidad);
         return q.getResultList();
     }
     

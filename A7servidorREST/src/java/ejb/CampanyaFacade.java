@@ -32,11 +32,30 @@ public class CampanyaFacade extends AbstractFacade<Campanya> {
         super(Campanya.class);
     }
     
-    public List<Campanya> filterByDate (Date date) {
+    public List<Campanya> filterByNombre(String nombre) {
+        Query q;
+        q = em.createQuery("SELECT c FROM Campanya c WHERE c.nombrecampanya <= :nombre");
+        q.setParameter("nombre", nombre);
+        return q.getResultList();
+    }
+    
+    public List<Campanya> filterByFecha (Date date) {
         Query q;
         q = em.createQuery("SELECT c FROM Campanya c WHERE c.fecha <= :fecha");
         q.setParameter("fecha", date);
         return q.getResultList();
+    }
+    
+    public List<Campanya> orderByFecha() {
+        Query q;
+        q = em.createQuery("SELECT c FROM Campanya c ORDER BY c.fecha");
+        return q.getResultList();
+    }
+    
+    public List<Campanya> orderByNombre() {
+       Query q;
+        q = em.createQuery("SELECT c FROM Campanya c ORDER BY c.nombrecampanya");
+        return q.getResultList(); 
     }
     
     public List<Campanya> findByModuloId(int id) {
