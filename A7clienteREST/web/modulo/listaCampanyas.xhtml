@@ -5,15 +5,19 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:b="http://bootsfaces.net/ui">
     <h:head>
+        <title>Lista campanyas</title>
+    </h:head>
         
         <h:body>
-            <b:container style="padding-top: 5%">
+            <b:navBar brand="PVTranslator" brandHref="http://localhost:8080/A7clienteREST/faces/modulo/index.xhtml"></b:navBar>
+            <b:container style="padding-top: 2.5%">
+                
                 <b:row>
                     <b:column small-screen="two-thirds">
                         <b:panel title="Tabla" collapsible="false">
                             <h:form style="padding-left: 10px; padding-right: 10px">
                                 
-                                <b:dataTable value = "#{modulosBean.listaCampanyas}" var = "camp" >
+                                <b:dataTable value = "#{modulosBean.listaCampanyas}" var = "camp" customOptions="false">
 
                                     <b:dataTableColumn value="#{camp.idcampanya}" label="id" style="width: 10%"/>
                                     <b:dataTableColumn value="#{camp.nombrecampanya}" label="Nombre"/>
@@ -67,6 +71,6 @@
                 </b:row>
             </b:container>
         </h:body>
-    </h:head>
+    
     
 </html>

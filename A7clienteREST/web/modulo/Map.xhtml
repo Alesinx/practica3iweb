@@ -3,11 +3,11 @@
 <html 	xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:h="http://java.sun.com/jsf/html"
 		xmlns:f="http://java.sun.com/jsf/core"
-		xmlns:ui="http://java.sun.com/jsf/facelets">
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:b="http://bootsfaces.net/ui">
 	
 	<h:head>
-    	<h:outputLabel value="Geolocalizacion de modulos"></h:outputLabel>
-    	
+    	<title>Geolocalización de los modulos</title>
     	    
     	<style>
       		#map {
@@ -22,7 +22,7 @@
   	</h:head>
   
   	<h:body>
-        
+        <b:navBar brand="PVTranslator" brandHref="http://localhost:8080/A7clienteREST/faces/modulo/index.xhtml"></b:navBar>
     	<div id="map" ></div>
 		<h:button>
 		</h:button>

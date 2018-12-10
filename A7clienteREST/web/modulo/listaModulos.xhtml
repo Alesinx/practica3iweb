@@ -5,11 +5,12 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Lista Modulos</title>
     </h:head>
     
     <h:body>
-        <b:container style="padding-top: 5%">
+        <b:navBar brand="PVTranslator" brandHref="http://localhost:8080/A7clienteREST/faces/modulo/index.xhtml"></b:navBar>
+        <b:container style="padding-top: 2.5%">
             <b:row>
                 <b:column small-screen="one-third">
                     <b:panel title="order" collapsible="false">
@@ -38,13 +39,13 @@
                     <h:form>
                         <b:commandButton action="#{modulosBean.VolverIndex()}" value="Volver al menu principal" look="success"/>
                     </h:form>
-                </b:column>
-                
-                <b:column>
+                <br/>
                     <h:form>
                         <b:commandButton value="Ver mapa de modulos" action="#{modulosBean.seeMap}" look="danger"/>
                     </h:form>
                 </b:column>
+                
+               
                 
             </b:row>
             

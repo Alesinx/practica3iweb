@@ -2,35 +2,36 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Campanya by Modulo</title>
     </h:head>
     <h:body>
         <h:form>
-            <h:dataTable value = "#{modulosBean.listaCampanyas}" var = "campanya">
+            <b:navBar brand="PVTranslator" brandHref="http://localhost:8080/A7clienteREST/faces/modulo/index.xhtml"></b:navBar>
+            <b:container style="padding-top: 2.5%">
+                <b:row>
+                <b:panel title="Campanyas" collapsible="false" >
+                    <b:dataTable value = "#{modulosBean.listaCampanyas}" var = "campanya" custom-options="false">
 
-                <h:column>    				
-                    <f:facet name = "header">ID</f:facet>			
-                    #{campanya.campanyaPK.moduloIdmodulo}
-                </h:column>
+                        <b:dataTableColumn value="#{campanya.idcampanya}" label="id" style="width: 10%" />
 
-                <h:column>
-                    <f:facet name = "header">Nombre</f:facet>
-                    #{campanya.nombrecampanya}
-                </h:column>
+                        <b:dataTableColumn value="#{campanya.nombrecampanya}" label="nombre"/>
 
-                <h:column>
-                    <f:facet name = "header">fecha</f:facet>
-                    #{campanya.fecha}
-                </h:column>
+                        <b:dataTableColumn value="#{campanya.fecha}" />
 
-            </h:dataTable>
+                    </b:dataTable>
+                </b:panel>
+                </b:row>
+                <b:row>
+                    <h:form>
+                        <b:commandButton action="#{modulosBean.Volver()}" value="Volver" look="success"/>
+                    </h:form>
+                </b:row>
+            </b:container>
         </h:form>
         
-        <h:form>
-            <h:commandButton action="#{modulosBean.Volver()}" value="Volver" />
-        </h:form>
         
         
     </h:body>

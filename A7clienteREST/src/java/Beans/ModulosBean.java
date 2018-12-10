@@ -110,10 +110,12 @@ public class ModulosBean implements Serializable{
     }
     
     public String listaModulosPage() {
+        listaModulo = moduloService.findAll();
         return "listaModulos";
     }
     
     public String listaCampanyasPage() {
+        listaCampanyas = campanyaService.findAll();
         return "listaCampanyas";
     }
     
