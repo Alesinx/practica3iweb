@@ -8,11 +8,59 @@
     <h:head>
         <title>PVTRANSLATOR</title>
     </h:head>
-    
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+ <meta name="google-signin-client_id" content="960841730941-skvstsabvip34mnoostiqosv7ib16kua.apps.googleusercontent.com"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://apis.google.com/js/platform.js" async="false" ></script> 
+    <script>
+    function onSignIn(googleUser)
+{
+       var profile = googleUser.getBasicProfile();
+    $(".g-signin2").css("display","none");
+    $(".data").css("display","block");
+    $("#pic").atrr('src',profile.getImageUrl());
+    $("#email").text(profile.getEmail());
+}
+
+function signOut()
+{
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function(){
+        
+        alert("You have been successfully signed out")
+        $(".g-signin2").css("display","block");
+        $(".data").css("display","none");
+    });
+}
+  </script> 
+ <style>
+
+    .data{
+    display:none;
+    }
+        .g-signin2{
+     margin-left:5px;
+     margin-top:5px;
+    }
+        </style>
     <h:body>
+                <div class="panel panel-default">
+  <div class="panel-body">
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+             
+                     <div class="data">
+            <p>Profile Details</p>
+            <img id="pic" class="img-circle" with="50" height="50"/>
+            <p id="email" class="alert alert-danger"></p>
+            <button onclick="signOut()" class="btn btn-danger">SignOut</button>
+            </div>
+  </div>
+</div>
         <b:navBar brand="PVTranslator" brandHref="http://localhost:8080/A7clienteREST/faces/modulo/index.xhtml"></b:navBar>
         <b:container style="padding-left: 5% ; padding-right: 5%">
             <b:jumbotron style="padding-left: 5% ; padding-right: 5%">
+                
+                
             
             <h1>PVTRANSLATOR</h1>
             <br/>
