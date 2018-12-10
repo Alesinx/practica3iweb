@@ -72,6 +72,8 @@
                             <b:dataTableColumn value="#{modulo.resistencia}" label="Resistencia"/>
 
                             <b:dataTableColumn value="#{modulo.rendimiento}" label="Rendimiento"/>
+                            
+                            <b:dataTableColumn value="#{modulosBean.obtenerTemperatura(modulo)}" label="Temp/Estado cielo"/>
 
                             <b:dataTableColumn label="" style="max-width: 2%">
                                 <b:commandButton value="Campañas" action="#{modulosBean.CampanyasByModulo(modulo.idmodulo)}" look="info"/>
@@ -80,6 +82,7 @@
                             <b:dataTableColumn label="">
                                 <b:commandButton value="BORRAR" action="#{modulosBean.deleteModulo(modulo.idmodulo)}" look="danger"/>
                             </b:dataTableColumn>
+                            
                             
                         </b:dataTable>
                     </h:form> 

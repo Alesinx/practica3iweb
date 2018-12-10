@@ -6,9 +6,11 @@
 package Beans;
 
 
+import java.io.IOException;
 import pojo.Campanya;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,10 +24,15 @@ import javax.enterprise.context.Dependent;
 import javax.enterprise.context.SessionScoped;
 import javax.json.Json;
 import javax.json.JsonArray;
+import javax.ws.rs.ClientErrorException;
+import javax.ws.rs.core.Response;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.ws.WebServiceRef;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import pojo.Modulo;
 import wsClient.CampanyaWSClient;
 import wsClient.ModuloWSClient;
@@ -236,7 +243,33 @@ public class ModulosBean implements Serializable{
     }
     
     // -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //ESTO VA EN EL BEAN DE MODULO //importar JSON, cambiar la variable moduloSeleccionado por la correspondiente
+    //parámetros de entrada moduloSeleccionado.getLatitud, moduloSeleccionado.getLongitud
+    //Declarar variables Double temperatura; String estCielo;
+    public String obtenerTemperatura (Modulo modulo) throws JSONException, IOException{
 
+        String r = Modulo.findTemperatura(Response.class, modulo.getLatitud(), modulo.getLongitud());
+        //Si la respuesta es OK
+        String msg="";
+        
+            //Guardamos la respuesta en un JSONObject para parsearla
+            
+            JSONObject obj = new JSONObject(r.toString());
+
+            //Parseamos el JSON hasta llegar al campo temperatura
+            JSONObject main = obj.getJSONObject("main");
+            Double temperatura = main.getDouble("temp");
+
+            //Parseamos el JSON hasta llegar al campo descripción
+            JSONArray jsArray = obj.getJSONArray("weather");
+            JSONObject jsCielo = jsArray.getJSONObject(0);
+            String estCielo = jsCielo.getString("description");
+            
+            msg=temperatura+"º/ "+estCielo;
+        
+
+        return msg;
+    }
     
     
 }
